@@ -1,0 +1,552 @@
+
+<html>
+<head>
+<script type="text/javascript">
+<!--
+function prepHref(linkElement) {
+    var myDiv = document.getElementById('Div_contain_image');
+    var myImage = myDiv.children[0];
+    linkElement.href = myImage.src;
+}
+
+function saveImageAs1(address, name) {
+    if (confirm('you wanna save this image?')) {
+        window.win = open(adress);
+        //    response.redirect("~/testpage.html");   
+        setTimeout('win.document.execCommand("SaveAs")', 100);
+        setTimeout('win.close()', 500);
+    }
+}
+
+function saveImageAsJpg(address, name) {
+    var link = document.createElement('a');
+    link.style = 'position: fixed, left -10000px,'; // making it invisible
+    link.href = 'data:application/octet-stream,' + encodeURIComponent(address); // forcing content type
+    link.download = name.indexOf('.jpg') < 0 ? name + '.jpg' : name;
+    /* file extension is very important! */
+    document.body.appendChild(link);
+    link.click();
+    //document.body.removeChild(link);
+}
+
+
+function saveImageAsPng(address, name) {
+    var link = document.createElement('a');
+    link.style = 'position: fixed, left -10000px,'; // making it invisible
+    link.href = address; // forcing content type
+    link.download = name.indexOf('.png') < 0 ? name + '.png' : name;
+    /* file extension is very important! */
+    document.body.appendChild(link);
+    link.click();
+    //document.body.removeChild(link);
+}
+
+var ulrList = [
+/*
+"https://www.spriters-resource.com/resources/sheets/85/87891.png",
+"https://www.spriters-resource.com/resources/sheets/85/87961.png",
+"https://www.spriters-resource.com/resources/sheets/92/94814.png",
+"https://www.spriters-resource.com/resources/sheets/85/87974.png",
+"https://www.spriters-resource.com/resources/sheets/92/94815.png",
+"https://www.spriters-resource.com/resources/sheets/85/87890.png",
+"https://www.spriters-resource.com/resources/sheets/85/87960.png",
+"https://www.spriters-resource.com/resources/sheets/85/88037.png",
+"https://www.spriters-resource.com/resources/sheets/92/94759.png",
+"https://www.spriters-resource.com/resources/sheets/85/87979.png",
+"https://www.spriters-resource.com/resources/sheets/85/88038.png",
+"https://www.spriters-resource.com/resources/sheets/85/88019.png",
+"https://www.spriters-resource.com/resources/sheets/85/88036.png",
+"https://www.spriters-resource.com/resources/sheets/85/88073.png",
+"https://www.spriters-resource.com/resources/sheets/85/88022.png",
+"https://www.spriters-resource.com/resources/sheets/85/88077.png",
+"https://www.spriters-resource.com/resources/sheets/85/87980.png",
+"https://www.spriters-resource.com/resources/sheets/85/88030.png",
+"https://www.spriters-resource.com/resources/sheets/85/87981.png",
+"https://www.spriters-resource.com/resources/sheets/85/88018.png",
+"https://www.spriters-resource.com/resources/sheets/85/88020.png",
+"https://www.spriters-resource.com/resources/sheets/85/87962.png",
+"https://www.spriters-resource.com/resources/sheets/85/88017.png",
+"https://www.spriters-resource.com/resources/sheets/85/88085.png",
+"https://www.spriters-resource.com/resources/sheets/85/88081.png",
+"https://www.spriters-resource.com/resources/sheets/85/87978.png",
+"https://www.spriters-resource.com/resources/sheets/85/87973.png",
+"https://www.spriters-resource.com/resources/sheets/85/88050.png",
+"https://www.spriters-resource.com/resources/sheets/85/88024.png",
+"https://www.spriters-resource.com/resources/sheets/85/87963.png",
+"https://www.spriters-resource.com/resources/sheets/85/88197.png",
+"https://www.spriters-resource.com/resources/sheets/85/88021.png",
+"https://www.spriters-resource.com/resources/sheets/86/89422.png",
+"https://www.spriters-resource.com/resources/sheets/85/88528.png",
+"https://www.spriters-resource.com/resources/sheets/86/89451.png",
+"https://www.spriters-resource.com/resources/sheets/85/88523.png",
+"https://www.spriters-resource.com/resources/sheets/86/89448.png",
+"https://www.spriters-resource.com/resources/sheets/85/88172.png",
+"https://www.spriters-resource.com/resources/sheets/88/91550.png",
+"https://www.spriters-resource.com/resources/sheets/85/88446.png",
+"https://www.spriters-resource.com/resources/sheets/85/88445.png",
+"https://www.spriters-resource.com/resources/sheets/85/88171.png",
+"https://www.spriters-resource.com/resources/sheets/85/88444.png",
+"https://www.spriters-resource.com/resources/sheets/86/89396.png",
+"https://www.spriters-resource.com/resources/sheets/85/88173.png",
+"https://www.spriters-resource.com/resources/sheets/85/88176.png",
+"https://www.spriters-resource.com/resources/sheets/85/87972.png",
+"https://www.spriters-resource.com/resources/sheets/85/88174.png",
+*/
+"https://www.spriters-resource.com/resources/sheets/86/88904.png",
+"https://www.spriters-resource.com/resources/sheets/92/95611.png",
+"https://www.spriters-resource.com/resources/sheets/85/87971.png",
+"https://www.spriters-resource.com/resources/sheets/92/95610.png",
+"https://www.spriters-resource.com/resources/sheets/85/88581.png",
+"https://www.spriters-resource.com/resources/sheets/85/88577.png",
+"https://www.spriters-resource.com/resources/sheets/90/93551.png",
+"https://www.spriters-resource.com/resources/sheets/90/93550.png",
+"https://www.spriters-resource.com/resources/sheets/88/90948.png",
+"https://www.spriters-resource.com/resources/sheets/92/95125.png",
+"https://www.spriters-resource.com/resources/sheets/91/94359.png",
+"https://www.spriters-resource.com/resources/sheets/91/94358.png",
+"https://www.spriters-resource.com/resources/sheets/92/95123.png",
+"https://www.spriters-resource.com/resources/sheets/92/95126.png",
+"https://www.spriters-resource.com/resources/sheets/85/87970.png",
+"https://www.spriters-resource.com/resources/sheets/88/90907.png",
+"https://www.spriters-resource.com/resources/sheets/85/87969.png",
+"https://www.spriters-resource.com/resources/sheets/91/94356.png",
+"https://www.spriters-resource.com/resources/sheets/92/95124.png",
+"https://www.spriters-resource.com/resources/sheets/91/94357.png",
+"https://www.spriters-resource.com/resources/sheets/92/94761.png",
+"https://www.spriters-resource.com/resources/sheets/85/87967.png",
+"https://www.spriters-resource.com/resources/sheets/88/90951.png",
+"https://www.spriters-resource.com/resources/sheets/92/94756.png",
+"https://www.spriters-resource.com/resources/sheets/92/95137.png",
+"https://www.spriters-resource.com/resources/sheets/92/94755.png",
+"https://www.spriters-resource.com/resources/sheets/92/94758.png",
+"https://www.spriters-resource.com/resources/sheets/92/95138.png",
+"https://www.spriters-resource.com/resources/sheets/92/95612.png",
+"https://www.spriters-resource.com/resources/sheets/92/95128.png",
+"https://www.spriters-resource.com/resources/sheets/85/87968.png",
+"https://www.spriters-resource.com/resources/sheets/88/91049.png",
+"https://www.spriters-resource.com/resources/sheets/88/91059.png",
+"https://www.spriters-resource.com/resources/sheets/92/94762.png",
+"https://www.spriters-resource.com/resources/sheets/92/95609.png",
+"https://www.spriters-resource.com/resources/sheets/92/95127.png",
+"https://www.spriters-resource.com/resources/sheets/85/87754.png",
+"https://www.spriters-resource.com/resources/sheets/85/87766.png",
+"https://www.spriters-resource.com/resources/sheets/85/88123.png",
+"https://www.spriters-resource.com/resources/sheets/85/87896.png",
+"https://www.spriters-resource.com/resources/sheets/85/88124.png",
+"https://www.spriters-resource.com/resources/sheets/85/88093.png",
+"https://www.spriters-resource.com/resources/sheets/85/88091.png",
+"https://www.spriters-resource.com/resources/sheets/85/87772.png",
+"https://www.spriters-resource.com/resources/sheets/85/88092.png",
+"https://www.spriters-resource.com/resources/sheets/85/88090.png",
+"https://www.spriters-resource.com/resources/sheets/85/87749.png",
+"https://www.spriters-resource.com/resources/sheets/85/87867.png",
+"https://www.spriters-resource.com/resources/sheets/92/94760.png",
+"https://www.spriters-resource.com/resources/sheets/85/87875.png",
+"https://www.spriters-resource.com/resources/sheets/85/87789.png",
+"https://www.spriters-resource.com/resources/sheets/90/92793.png",
+"https://www.spriters-resource.com/resources/sheets/85/87869.png",
+"https://www.spriters-resource.com/resources/sheets/85/87810.png",
+"https://www.spriters-resource.com/resources/sheets/85/87779.png",
+"https://www.spriters-resource.com/resources/sheets/92/94771.png",
+"https://www.spriters-resource.com/resources/sheets/85/88269.png",
+"https://www.spriters-resource.com/resources/sheets/85/87816.png",
+"https://www.spriters-resource.com/resources/sheets/85/87881.png",
+"https://www.spriters-resource.com/resources/sheets/85/87868.png",
+"https://www.spriters-resource.com/resources/sheets/85/87880.png",
+"https://www.spriters-resource.com/resources/sheets/92/94776.png",
+"https://www.spriters-resource.com/resources/sheets/85/87821.png",
+"https://www.spriters-resource.com/resources/sheets/92/94774.png",
+"https://www.spriters-resource.com/resources/sheets/85/87792.png",
+"https://www.spriters-resource.com/resources/sheets/85/87765.png",
+"https://www.spriters-resource.com/resources/sheets/85/87879.png",
+"https://www.spriters-resource.com/resources/sheets/85/87866.png",
+"https://www.spriters-resource.com/resources/sheets/85/87788.png",
+"https://www.spriters-resource.com/resources/sheets/85/87778.png",
+"https://www.spriters-resource.com/resources/sheets/85/87782.png",
+"https://www.spriters-resource.com/resources/sheets/85/87790.png",
+"https://www.spriters-resource.com/resources/sheets/92/94810.png",
+"https://www.spriters-resource.com/resources/sheets/85/87780.png",
+"https://www.spriters-resource.com/resources/sheets/85/87791.png",
+"https://www.spriters-resource.com/resources/sheets/85/87781.png",
+"https://www.spriters-resource.com/resources/sheets/86/89293.png",
+"https://www.spriters-resource.com/resources/sheets/85/88512.png",
+"https://www.spriters-resource.com/resources/sheets/86/89292.png",
+"https://www.spriters-resource.com/resources/sheets/85/88511.png",
+"https://www.spriters-resource.com/resources/sheets/86/89294.png",
+"https://www.spriters-resource.com/resources/sheets/86/89295.png",
+"https://www.spriters-resource.com/resources/sheets/85/87877.png",
+"https://www.spriters-resource.com/resources/sheets/85/87817.png",
+"https://www.spriters-resource.com/resources/sheets/85/87785.png",
+"https://www.spriters-resource.com/resources/sheets/85/87888.png",
+"https://www.spriters-resource.com/resources/sheets/85/87865.png",
+"https://www.spriters-resource.com/resources/sheets/85/87820.png",
+"https://www.spriters-resource.com/resources/sheets/86/89291.png",
+"https://www.spriters-resource.com/resources/sheets/85/87787.png",
+"https://www.spriters-resource.com/resources/sheets/85/87871.png",
+"https://www.spriters-resource.com/resources/sheets/85/87818.png",
+"https://www.spriters-resource.com/resources/sheets/85/87809.png",
+"https://www.spriters-resource.com/resources/sheets/85/87872.png",
+"https://www.spriters-resource.com/resources/sheets/85/87786.png",
+"https://www.spriters-resource.com/resources/sheets/85/87819.png",
+"https://www.spriters-resource.com/resources/sheets/85/87884.png",
+"https://www.spriters-resource.com/resources/sheets/85/87774.png",
+"https://www.spriters-resource.com/resources/sheets/85/87870.png",
+"https://www.spriters-resource.com/resources/sheets/85/87885.png",
+"https://www.spriters-resource.com/resources/sheets/87/90124.png",
+"https://www.spriters-resource.com/resources/sheets/87/90125.png",
+"https://www.spriters-resource.com/resources/sheets/89/92540.png",
+"https://www.spriters-resource.com/resources/sheets/87/90123.png",
+"https://www.spriters-resource.com/resources/sheets/85/87753.png",
+"https://www.spriters-resource.com/resources/sheets/90/92794.png",
+"https://www.spriters-resource.com/resources/sheets/85/87808.png",
+"https://www.spriters-resource.com/resources/sheets/87/90128.png",
+"https://www.spriters-resource.com/resources/sheets/85/87784.png",
+"https://www.spriters-resource.com/resources/sheets/87/90127.png",
+"https://www.spriters-resource.com/resources/sheets/85/87883.png",
+"https://www.spriters-resource.com/resources/sheets/87/90126.png",
+"https://www.spriters-resource.com/resources/sheets/85/87783.png",
+"https://www.spriters-resource.com/resources/sheets/85/87807.png",
+"https://www.spriters-resource.com/resources/sheets/85/88514.png",
+"https://www.spriters-resource.com/resources/sheets/85/88513.png",
+"https://www.spriters-resource.com/resources/sheets/89/92001.png",
+"https://www.spriters-resource.com/resources/sheets/89/92002.png",
+"https://www.spriters-resource.com/resources/sheets/86/89296.png",
+"https://www.spriters-resource.com/resources/sheets/89/92003.png",
+"https://www.spriters-resource.com/resources/sheets/89/92004.png",
+"https://www.spriters-resource.com/resources/sheets/85/87803.png",
+"https://www.spriters-resource.com/resources/sheets/85/87773.png",
+"https://www.spriters-resource.com/resources/sheets/88/90899.png",
+"https://www.spriters-resource.com/resources/sheets/85/87802.png",
+"https://www.spriters-resource.com/resources/sheets/90/92795.png",
+"https://www.spriters-resource.com/resources/sheets/85/87900.png",
+"https://www.spriters-resource.com/resources/sheets/85/87889.png",
+"https://www.spriters-resource.com/resources/sheets/90/93542.png",
+"https://www.spriters-resource.com/resources/sheets/85/87895.png",
+"https://www.spriters-resource.com/resources/sheets/90/93543.png",
+"https://www.spriters-resource.com/resources/sheets/85/87776.png",
+"https://www.spriters-resource.com/resources/sheets/85/87775.png",
+"https://www.spriters-resource.com/resources/sheets/85/87874.png",
+"https://www.spriters-resource.com/resources/sheets/85/87750.png",
+"https://www.spriters-resource.com/resources/sheets/88/90900.png",
+"https://www.spriters-resource.com/resources/sheets/92/94757.png",
+"https://www.spriters-resource.com/resources/sheets/85/87793.png",
+"https://www.spriters-resource.com/resources/sheets/85/87806.png",
+"https://www.spriters-resource.com/resources/sheets/90/93540.png",
+"https://www.spriters-resource.com/resources/sheets/85/87892.png",
+"https://www.spriters-resource.com/resources/sheets/85/87893.png",
+"https://www.spriters-resource.com/resources/sheets/85/87901.png",
+"https://www.spriters-resource.com/resources/sheets/85/87801.png",
+"https://www.spriters-resource.com/resources/sheets/85/87814.png",
+"https://www.spriters-resource.com/resources/sheets/85/87914.png",
+"https://www.spriters-resource.com/resources/sheets/90/93541.png",
+"https://www.spriters-resource.com/resources/sheets/85/87777.png",
+"https://www.spriters-resource.com/resources/sheets/85/87906.png",
+"https://www.spriters-resource.com/resources/sheets/85/87770.png",
+"https://www.spriters-resource.com/resources/sheets/85/87752.png",
+"https://www.spriters-resource.com/resources/sheets/85/87813.png",
+"https://www.spriters-resource.com/resources/sheets/85/87751.png",
+"https://www.spriters-resource.com/resources/sheets/88/90903.png",
+"https://www.spriters-resource.com/resources/sheets/90/92796.png",
+"https://www.spriters-resource.com/resources/sheets/92/94951.png",
+"https://www.spriters-resource.com/resources/sheets/85/87796.png",
+"https://www.spriters-resource.com/resources/sheets/85/87902.png",
+"https://www.spriters-resource.com/resources/sheets/85/87797.png",
+"https://www.spriters-resource.com/resources/sheets/85/87815.png",
+"https://www.spriters-resource.com/resources/sheets/92/94896.png",
+"https://www.spriters-resource.com/resources/sheets/85/87800.png",
+"https://www.spriters-resource.com/resources/sheets/85/87910.png",
+"https://www.spriters-resource.com/resources/sheets/85/87804.png",
+"https://www.spriters-resource.com/resources/sheets/85/87904.png",
+"https://www.spriters-resource.com/resources/sheets/85/87912.png",
+"https://www.spriters-resource.com/resources/sheets/85/87811.png",
+"https://www.spriters-resource.com/resources/sheets/85/87799.png",
+"https://www.spriters-resource.com/resources/sheets/85/87925.png",
+"https://www.spriters-resource.com/resources/sheets/85/87911.png",
+"https://www.spriters-resource.com/resources/sheets/92/95586.png",
+"https://www.spriters-resource.com/resources/sheets/85/87812.png",
+"https://www.spriters-resource.com/resources/sheets/85/87794.png",
+"https://www.spriters-resource.com/resources/sheets/85/87908.png",
+"https://www.spriters-resource.com/resources/sheets/85/87798.png",
+"https://www.spriters-resource.com/resources/sheets/85/87903.png",
+"https://www.spriters-resource.com/resources/sheets/85/87909.png",
+"https://www.spriters-resource.com/resources/sheets/85/87771.png",
+"https://www.spriters-resource.com/resources/sheets/85/87795.png",
+"https://www.spriters-resource.com/resources/sheets/85/87805.png",
+"https://www.spriters-resource.com/resources/sheets/85/87913.png",
+"https://www.spriters-resource.com/resources/sheets/85/87905.png",
+"https://www.spriters-resource.com/resources/sheets/85/87907.png",
+"https://www.spriters-resource.com/resources/sheets/92/95587.png",
+"https://www.spriters-resource.com/resources/sheets/88/90902.png",
+"https://www.spriters-resource.com/resources/sheets/89/91660.png",
+"https://www.spriters-resource.com/resources/sheets/92/94772.png",
+"https://www.spriters-resource.com/resources/sheets/89/92543.png",
+"https://www.spriters-resource.com/resources/sheets/89/92539.png",
+"https://www.spriters-resource.com/resources/sheets/89/91661.png",
+"https://www.spriters-resource.com/resources/sheets/92/94770.png",
+"https://www.spriters-resource.com/resources/sheets/92/94769.png",
+"https://www.spriters-resource.com/resources/sheets/89/91662.png",
+"https://www.spriters-resource.com/resources/sheets/89/92542.png",
+"https://www.spriters-resource.com/resources/sheets/92/94768.png",
+"https://www.spriters-resource.com/resources/sheets/92/94775.png",
+"https://www.spriters-resource.com/resources/sheets/89/91677.png",
+"https://www.spriters-resource.com/resources/sheets/89/92541.png",
+"https://www.spriters-resource.com/resources/sheets/92/94773.png",
+"https://www.spriters-resource.com/resources/sheets/92/94811.png",
+"https://www.spriters-resource.com/resources/sheets/92/94812.png",
+"https://www.spriters-resource.com/resources/sheets/92/94813.png",
+"https://www.spriters-resource.com/resources/sheets/85/87850.png",
+"https://www.spriters-resource.com/resources/sheets/85/87849.png",
+"https://www.spriters-resource.com/resources/sheets/85/87848.png",
+"https://www.spriters-resource.com/resources/sheets/85/87840.png",
+"https://www.spriters-resource.com/resources/sheets/85/87839.png",
+"https://www.spriters-resource.com/resources/sheets/85/87837.png",
+"https://www.spriters-resource.com/resources/sheets/85/87826.png",
+"https://www.spriters-resource.com/resources/sheets/85/87843.png",
+"https://www.spriters-resource.com/resources/sheets/85/87842.png",
+"https://www.spriters-resource.com/resources/sheets/85/87841.png",
+"https://www.spriters-resource.com/resources/sheets/88/90950.png",
+"https://www.spriters-resource.com/resources/sheets/88/90949.png",
+"https://www.spriters-resource.com/resources/sheets/85/87824.png",
+"https://www.spriters-resource.com/resources/sheets/85/87833.png",
+"https://www.spriters-resource.com/resources/sheets/85/87847.png",
+"https://www.spriters-resource.com/resources/sheets/85/87846.png",
+"https://www.spriters-resource.com/resources/sheets/85/87845.png",
+"https://www.spriters-resource.com/resources/sheets/85/87825.png",
+"https://www.spriters-resource.com/resources/sheets/85/87836.png",
+"https://www.spriters-resource.com/resources/sheets/85/87835.png",
+"https://www.spriters-resource.com/resources/sheets/85/87834.png",
+"https://www.spriters-resource.com/resources/sheets/85/87838.png",
+"https://www.spriters-resource.com/resources/sheets/85/87844.png",
+"https://www.spriters-resource.com/resources/sheets/85/88131.png",
+"https://www.spriters-resource.com/resources/sheets/85/87897.png",
+"https://www.spriters-resource.com/resources/sheets/87/90211.png",
+"https://www.spriters-resource.com/resources/sheets/85/88452.png",
+"https://www.spriters-resource.com/resources/sheets/85/88457.png",
+"https://www.spriters-resource.com/resources/sheets/85/88125.png",
+"https://www.spriters-resource.com/resources/sheets/85/87864.png",
+"https://www.spriters-resource.com/resources/sheets/85/88455.png",
+"https://www.spriters-resource.com/resources/sheets/85/88128.png",
+"https://www.spriters-resource.com/resources/sheets/85/88127.png",
+"https://www.spriters-resource.com/resources/sheets/87/90213.png",
+"https://www.spriters-resource.com/resources/sheets/87/90129.png",
+"https://www.spriters-resource.com/resources/sheets/85/87832.png",
+"https://www.spriters-resource.com/resources/sheets/85/87827.png",
+"https://www.spriters-resource.com/resources/sheets/87/90212.png",
+"https://www.spriters-resource.com/resources/sheets/85/87899.png",
+"https://www.spriters-resource.com/resources/sheets/85/87823.png",
+"https://www.spriters-resource.com/resources/sheets/85/87831.png",
+"https://www.spriters-resource.com/resources/sheets/85/88129.png",
+"https://www.spriters-resource.com/resources/sheets/85/87828.png",
+"https://www.spriters-resource.com/resources/sheets/85/87830.png",
+"https://www.spriters-resource.com/resources/sheets/85/88023.png",
+"https://www.spriters-resource.com/resources/sheets/85/87976.png",
+"https://www.spriters-resource.com/resources/sheets/85/87977.png"
+];
+
+function saveImageAl1() {
+	var count = ulrList.length;
+	window.alert("saveImageAl1:" + count);
+    for(var i = 0; i < count; i++) {
+		saveImageAsPng( ulrList[i], "" + i);
+	}
+}
+
+function saveImageAl12() {
+	var count = ulrList.length;
+	window.alert("saveImageAl1:" + count);
+    for(var i = 0; i < 3; i++) {
+		saveImageAs1( ulrList[i], "" + i + ".png");
+	}
+}
+
+function GetAllElements_BY_ID(elementID)
+{
+	var sampleElements = document.getElementsByClassName(elementID);
+}
+
+var getElementsByClassName = function(targetNames) {
+    var result        = false,
+        getElement    = false,
+        elements      = null,
+        i             = 0,
+        len           = 0,
+        ii            = 0,
+        iii           = 0,
+        len2          = 0,
+        len3          = 0,
+        getClassNames = [];
+ 
+    if (!targetNames) return result;
+ 
+    if (document.getElementsByClassName) {
+        if (targetNames instanceof Array) {
+            result = [];
+ 
+            for (i = 0, len = targetNames.length; i < len; i++) {
+                getElement = document.getElementsByClassName(targetNames[i]);
+ 
+                if (getElement.length === 0) continue;
+ 
+                for (ii = 0, len2 = getElement.length; ii < len2; ii++) {
+                    if (result.indexOf(getElement[ii]) === -1) {
+                        result.push(getElement[ii]);
+                    }
+                }
+            }
+        } else {
+            if (targetNames.match(/ /)) {
+ 
+                targetNames = targetNames.split(/ /);
+                result      = [];
+ 
+                for (i = 0, len = targetNames.length; i < len; i++) {
+                    getElement = document.getElementsByClassName(targetNames[i]);
+ 
+                    if (getElement.length === 0) continue;
+ 
+                    for (ii = 0, len2 = getElement.length; ii < len2; ii++) {
+                        if (result.indexOf(getElement[ii]) === -1) {
+                            result.push(getElement[ii]);
+                        }
+                    }
+                }
+            } else {
+                result = document.getElementsByClassName(targetNames);
+            }
+        }
+    } else {
+        result = {};
+ 
+        if (document.all) {
+            elements = document.all;
+        } else {
+           elements = document.getElementsByTagName('*');
+        }
+ 
+        if (targetNames instanceof Array) {
+ 
+            result = [];
+ 
+            for (i = 0, len = elements.length; i < len; i++) {
+                getClassNames = elements[i].className.split(/ /);
+                for (ii = 0, len2 = targetNames.length; ii < len2; ii++) {
+                    for (iii = 0, len3 = getClassNames.length; iii < len3; iii++) {
+                        if (getClassNames[iii] === targetNames[ii]) {
+                            result.push(elements[i]);
+                        }
+                    }
+                }
+            }
+        } else {
+            if (targetNames.match(/ /)) {
+                targetNames = targetNames.split(/ /);
+                result      = [];
+ 
+                for (i = 0, len = elements.length; i < len; i++) {
+                    getClassNames = elements[i].className.split(/ /);
+ 
+                    for (ii = 0, len2 = targetNames.length; ii < len2; ii++) {
+                        for (iii = 0, len3 = getClassNames.length; iii < len3; iii++) {
+                            if (getClassNames[iii] === targetNames[ii]) {
+                                result.push(elements[i]);
+                            }
+                        }
+                    }
+                }
+            } else {
+                result = [];
+ 
+                for (i = 0, len = elements.length; i < len; i++) {
+                    getClassNames = elements[i].className.split(/ /);
+                    for (ii = 0, len2 = getClassNames.length; ii < len2; ii++) {
+                        if (getClassNames[ii] === targetNames) {
+                            result.push(elements[i]);
+                        }
+                    }
+                }
+            }
+ 
+        }
+    }
+ 
+    return result;
+};
+
+function GetAllElements_by_tagName(tagName)
+{
+	var sampleElements = document.getElementsByClassName(tagName);
+}
+
+function GetAllElements_by_name(name)
+{
+	var sampleElements = document.getElementsByClassName(name);
+}
+// -->
+</script>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    $(this).hide();
+  });
+});
+
+//$(this) 					选取当前 HTML 元素
+//$("p.intro") 				选取 class 为 intro 的 <p> 元素
+//$("*")					选取所有元素
+//$("p:first")				选取第一个 <p> 元素
+//$("ul li:first")			选取第一个 <ul> 元素的第一个 <li> 元素
+//$("ul li:first-child")	选取每个 <ul> 元素的第一个 <li> 元素
+//$("[href]")				选取带有 href 属性的元素
+//$("a[target='_blank']")	选取所有 target 属性值等于 "_blank" 的 <a> 元素
+//$("a[target!='_blank']")	选取所有 target 属性值不等于 "_blank" 的 <a> 元素
+//$(":button")				选取所有 type="button" 的 <input> 元素 和 <button> 元素
+//$("tr:even")				选取偶数位置的 <tr> 元素
+//$("tr:odd")				选取奇数位置的 <tr> 元素
+//$(":button") 				可以选取所有 type="button" 的 <input> 元素 和 <button> 元素，如果去掉冒号，$("button")只能获取 <button> 元素。
+//							：可以理解为种类的意思，如：p:first，p 的种类为第一个。
+//							[] 很自然的可以理解为属性的意思，如：[href] 选取带有 href 属性的元素。
+//$(document).ready() 		方法允许我们在文档完全加载完后执行函数。
+
+//	//鼠标事件
+//	click
+//	dblclick
+//	mouseenter
+//	mouseleave
+//	//键盘事件
+//	keypress
+//	keydown
+//	keyup
+//	//表单事件
+//	submit
+//	change
+//	focus
+//	blur
+//	//文档/窗口事件
+//	load
+//	resize
+//	scroll
+//	unload
+</script>
+
+</head>
+<body>
+<!--
+<div id="Div_contain_image"><img src="YourImage.jpg" alt='MyImage'></div>
+<a href="#" onclick="prepHref(this)" download>Click here to download image</a>
+-->
+<a href="#" onclick="saveImageAl1()" >Click here to download saveImageAl1</a>
+<p><input type="button" value="saveImageAl1()" onClick="saveImageAl1"></p>
+
+<a href="#" onclick="saveImageAl1()" >getelements by id Al1</a>
+<a href="#" onclick="saveImageAl1()" >getelements by name Al1</a>
+<a href="#" onclick="saveImageAl1()" >getelements by classname Al1</a>
+<a href="#" onclick="saveImageAl1()" >getelements by TagName Al1</a>
+
+<p>如果你点我，我就会消失。</p>
+<p>继续点我!</p>
+<p>接着点我!</p>
+
+</body>
+</html>
